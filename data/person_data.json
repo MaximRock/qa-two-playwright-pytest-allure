@@ -1,0 +1,16 @@
+{
+  "first_name": "Агап",
+  "last_name": "Степанов",
+  "date_of_birth": "1983-10-05",
+  "street_name": "наб. Пролетарская",
+  "postcode": "132448",
+  "city": "к. Томпа",
+  "region": "респ. Чечня",
+  "country": "RU",
+  "phone": "0814804620093",
+  "email": "kapustinnikola@example.org",
+  "password": "#Qwerty1!",
+  "cart_number": "2201-3180-7170-3671",
+  "expiration_date": "07/2027",
+  "cvv": "3558"
+}
