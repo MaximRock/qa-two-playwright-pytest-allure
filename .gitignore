@@ -29,10 +29,10 @@ allure_result
 .python-version
 
 # data
-person_data.json
+data/*
 
 # logs
-logs/logs.log
+logs/*
 
 11.py
 12.txt
