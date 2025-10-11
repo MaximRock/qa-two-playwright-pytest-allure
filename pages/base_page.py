@@ -33,7 +33,7 @@ class BasePage:
         """
         with allure.step(f"Open main page ToolShop: '{self.urls['main']}'"):
             return self.page.goto(str(self.urls["main"]))
-
+     
     def visit_login_page_toolshop(self) -> Response | None:
         """Открывает страницу входа в систему ToolShop.
 
