@@ -72,6 +72,8 @@ ignore = [
 ]
 fixable = [
     "I",
+    "W293",
+    "W391",
 ]
 
 [tool.ruff.format]
