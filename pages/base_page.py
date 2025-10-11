@@ -44,7 +44,7 @@ class BasePage:
         """
         with allure.step(f"open is url: '{self.urls['login']}'"):
             return self.page.goto(str(self.urls["login"]))
-
+     
     def visit_register_page_toolshop(self) -> Response | None:
         """Открывает страницу регистрации в ToolShop.
 
@@ -81,3 +81,9 @@ class BasePage:
         """
         with allure.step(f"Check that the current page is '{url}'"):
             expect(self.page).to_have_url(url)
+
+
+
+
+
+
