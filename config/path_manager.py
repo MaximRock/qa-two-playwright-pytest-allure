@@ -44,11 +44,6 @@ class PathManager:
         path = self.get_path(*path_parts)
         return path.is_file()
 
-    def is_directory(self, *path_parts: str) -> bool:
-        """Проверяет, является ли путь директорией."""
-        path = self.get_path(*path_parts)
-        return path.is_dir()
-
     def create_file(self, *path_parts: str, content: str = "") -> Path:
         """
         Создает файл с указанным содержимым.

@@ -10,7 +10,6 @@ from config.exception import (
     ElementNotVisibleError,
     ElementTimeoutError,
     LocatorNotStringError,
-    NoElementsFoundError,
 )
 
 logger: logging.Logger = logging.getLogger(__name__)
@@ -41,17 +40,6 @@ class Component(ABC):
 
         locator: str = self.locator.format(**kwargs)
         return self.page.locator(locator)
-
-    def get_elements(self, **kwargs) -> list:
-        elements: list = self.get_locator(**kwargs).all()
-        if not elements:
-            logger.error(
-                f"No elements found '{elements}' locator '{self.locator}'",
-                exc_info=True,
-            )
-            raise NoElementsFoundError()
-
-        return elements
 
     def wait_for_element(self, timeout=None, **kwargs) -> Locator:
         try:
@@ -91,18 +79,10 @@ class Component(ABC):
     def should_to_have_text(self, text: str, **kwargs) -> None:
         try:
             with allure.step(
-                f"Checking that {self.type_of} '{self.name}' has a text '{text}'"):
+                f"Checking that {self.type_of} '{self.name}' has a text '{text}'"
+            ):
                 locator: Locator = self.wait_for_element(**kwargs)
                 expect(locator).to_have_text(text)
-        except Exception as e:
-            logger.error(self.error_msg, exc_info=True)
-            raise ElementNotVisibleError(self.error_msg) from e
-
-    def should_to_have_url(self, url: str) -> None:
-        try:
-            with allure.step(
-                f"Checking that {self.type_of} '{self.name}' has a url '{url}'"):
-                expect(self.page).to_have_url(url)
         except Exception as e:
             logger.error(self.error_msg, exc_info=True)
             raise ElementNotVisibleError(self.error_msg) from e

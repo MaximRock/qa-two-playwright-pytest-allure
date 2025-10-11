@@ -1,11 +1,10 @@
 import pytest
-from playwright.sync_api import Page, expect
 
 from pages.registration_page_toolshop import RegistrationPageToolshop
 
 
 @pytest.mark.usefixtures("open_registration_page")
-class TestNegativeUserRegistration:
+class TestEmptyFieldValidation:
     @pytest.mark.parametrize(
         "field",
         [
@@ -24,7 +23,6 @@ class TestNegativeUserRegistration:
     )
     def test_empty_field_validation(
         self,
-        page: Page,
         field: str,
         get_generated_file,
         registration_page_toolshop: RegistrationPageToolshop,

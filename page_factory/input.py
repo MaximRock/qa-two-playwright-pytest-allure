@@ -45,23 +45,3 @@ class Input(Component):
         except Exception as e:
             logger.error(self.error_msg, exc_info=True)
             raise ElementNotVisibleError(self.error_msg) from e
-
-    def should_be_empty(self, **kwargs) -> None:
-        try:
-            with allure.step(f"Checking that {self.type_of} '{self.name}' is empty"):
-                locator: Locator = self.get_locator(**kwargs)
-                expect(locator).to_have_value("")
-        except Exception as e:
-            logger.error(self.error_msg, exc_info=True)
-            raise ElementNotVisibleError(self.error_msg) from e
-
-    def should_show_placeholder(self, value: str, **kwargs) -> None:
-        try:
-            with allure.step(
-                f"Checking that {self.type_of} '{self.name}' to value '{value}'"
-            ):
-                locator: Locator = self.get_locator(**kwargs)
-                expect(locator).to_have_attribute("placeholder", value)
-        except Exception as e:
-            logger.error(self.error_msg, exc_info=True)
-            raise ElementNotVisibleError(self.error_msg) from e

@@ -38,9 +38,8 @@ def user_credentials(get_generated_file, request):
 @pytest.fixture
 def user_full_name(get_generated_file, request) -> str:
     full_name = (
-        f" {get_generated_file["first_name"]}"
-        f" {get_generated_file["last_name"]} "
-        )
+        f" {get_generated_file['first_name']} {get_generated_file['last_name']} "
+    )
     request.cls.full_name = full_name
     return full_name
 

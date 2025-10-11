@@ -1,5 +1,3 @@
-
-
 class ToolshopUrls:
     def __init__(self) -> None:
         self._urls: dict[str, str] = {

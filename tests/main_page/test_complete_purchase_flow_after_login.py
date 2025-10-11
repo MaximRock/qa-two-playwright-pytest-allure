@@ -49,8 +49,14 @@ class TestCompletePurchaseFlowAfterLogin:
         checkout_page_toolshop.click_proceed_to_checkout_cart()
         checkout_page_toolshop.is_logged_in(text=data_test["text_logged_in"])
         checkout_page_toolshop.invoice_fields(data=data_test["user_data"])
-        checkout_page_toolshop.choose_payment_method(payment_method=data_test["credit_card"])
+        checkout_page_toolshop.choose_payment_method(
+            payment_method=data_test["credit_card"]
+        )
         checkout_page_toolshop.fill_credit_card(data=data_test["user_data"])
-        checkout_page_toolshop.fill_card_holder_name(holder_name=data_test["holder_name"])
+        checkout_page_toolshop.fill_card_holder_name(
+            holder_name=data_test["holder_name"]
+        )
         checkout_page_toolshop.click_confirm_button()
-        checkout_page_toolshop.check_payment_success_message(text=data_test["payment_massage"])
+        checkout_page_toolshop.check_payment_success_message(
+            text=data_test["payment_massage"]
+        )

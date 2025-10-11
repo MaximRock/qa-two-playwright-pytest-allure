@@ -18,19 +18,19 @@ class BasePage:
             return self.page.goto(str(self.urls["main"]))
 
     def visit_login_page_toolshop(self) -> Response | None:
-        with allure.step(f"open is url: '{self.urls["login"]}'"):
+        with allure.step(f"open is url: '{self.urls['login']}'"):
             return self.page.goto(str(self.urls["login"]))
 
     def visit_register_page_toolshop(self) -> Response | None:
-        with allure.step(f"open is url: '{self.urls["register"]}'"):
+        with allure.step(f"open is url: '{self.urls['register']}'"):
             return self.page.goto(str(self.urls["register"]))
 
     def visit_account_page_toolshop(self) -> Response | None:
-        with allure.step(f"open is url: '{self.urls["account"]}'"):
+        with allure.step(f"open is url: '{self.urls['account']}'"):
             return self.page.goto(
-                str(self.urls["account"]), wait_until="domcontentloaded")
+                str(self.urls["account"]), wait_until="domcontentloaded"
+            )
 
     def get_current_page(self, url) -> None:
-        with allure.step(
-            f"Check that the current page is '{url}'"):
+        with allure.step(f"Check that the current page is '{url}'"):
             expect(self.page).to_have_url(url)

@@ -13,8 +13,7 @@ class LoginForm:
             name="Login email",
         )
         self.login_password: Input = Input(
-            page, locator="input[data-test='password']",
-            name="Login password"
+            page, locator="input[data-test='password']", name="Login password"
         )
         self.login_button: Button = Button(
             page,

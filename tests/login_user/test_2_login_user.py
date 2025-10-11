@@ -16,7 +16,6 @@ class TestLoginUser:
         login_page_toolshop: LoginPageToolshop,
         account_page_toolshop: AccountPageToolshop,
     ) -> None:
-
         login_page_toolshop.login_email(email=self.email)
         login_page_toolshop.login_password(password=self.password)
         login_page_toolshop.login_form.click_login_button()

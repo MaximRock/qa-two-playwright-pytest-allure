@@ -13,7 +13,6 @@ class TestRegistrationUser:
         login_page_toolshop: LoginPageToolshop,
         registration_page_toolshop: RegistrationPageToolshop,
     ) -> None:
-
         registration_page_toolshop.form.fill_all_fields_except(data=get_generated_file)
         registration_page_toolshop.click_button()
         login_page_toolshop.check_login_page(text="Login")

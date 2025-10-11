@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from components.registration_form.registration_form import RegistrationForm
 from page_factory.button import Button
@@ -107,7 +107,7 @@ class CheckoutPageToolshop(BasePage):
             "credit_card": "Credit Card",
             "buy_now_pay_later": "Buy Now Pay Later",
             "gift_card": "Gift Card",
-            }
+        }
 
         for option, value in option_mapping.items():
             if payment_method == option:

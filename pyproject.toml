@@ -81,9 +81,13 @@ indent-style = "space"
 [tool.vulture]
 exclude = [".venv/"]
 ignore_decorators = ["@pytest.fixture"]
-ignore_names = ["open_login_page"]
-# make_whitelist = true
-# min_confidence = 80
-# #paths = ["myscript.py", "mydir", "whitelist.py"]
-# sort_by_size = true
-# verbose = true
+ignore_names = [
+    "open_main_page",
+    "open_login_page", 
+    "pytest_plugins",
+    "visit_account_page_toolshop"
+]
+paths = ["."]
+min_confidence = 80
+verbose = true
+

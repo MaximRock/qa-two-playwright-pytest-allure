@@ -1,5 +1,3 @@
-
-
 class TestBaseExceptionError(Exception):
     """Базовое исключение для тестовой среды."""
 
@@ -35,12 +33,6 @@ class ElementTimeoutError(TestBaseExceptionError):
     """Исключение, возникающее когда выходит время ожидания элемента."""
 
     default_message: str = "Время ожидания элемента истекло"
-
-
-class NoElementsFoundError(TestBaseExceptionError):
-    """Исключение, возникающее когда не найдено ни одного элемента."""
-
-    default_message: str = "Не найдено ни одного элемента"
 
 
 class FileNotFoundError(TestBaseExceptionError):

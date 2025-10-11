@@ -28,6 +28,12 @@ allure_result
 # python-version
 .python-version
 
+# data
+person_data.json
+
+# logs
+logs/logs.log
+
 11.py
 12.txt
 
