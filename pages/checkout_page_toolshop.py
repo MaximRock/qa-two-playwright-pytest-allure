@@ -9,7 +9,14 @@ from pages.base_page import BasePage
 
 
 class CheckoutPageToolshop(BasePage):
+    """Page Object Model для страницы оформления заказа в приложении Toolshop."""
+
     def __init__(self, page: Page) -> None:
+        """
+        Инициализация страницы оформления заказа.
+        Args:
+            page: Экземпляр страницы Playwright для взаимодействия с браузером
+        """
         super().__init__(page)
         self.form: RegistrationForm = RegistrationForm(page)
         self.checkout_url: str = self.urls["checkout"]
@@ -75,16 +82,30 @@ class CheckoutPageToolshop(BasePage):
         )
 
     def check_cart_url(self) -> None:
+        """Проверить, что текущий URL соответствует странице оформления заказа."""
         self.get_current_page(url=self.checkout_url)
 
     def click_proceed_to_checkout_cart(self) -> None:
+        """Нажать кнопку 'Proceed to Checkout' на этапе корзины."""
         self.cart_proceed_to_checkout.click()
 
     def is_logged_in(self, text: str) -> None:
+        """
+        Проверить, что пользователь авторизован и перейти к следующему шагу.
+        Args:
+            text: Текст, подтверждающий авторизацию пользователя
+        """
         self.logged_in.must_contain_text(text=text)
         self.sign_in_proceed_to_checkout.click()
 
     def invoice_fields(self, data: dict) -> None:
+        """
+        Проверить заполненные поля плательщика и перейти к следующему шагу.
+        Args:
+            data: Словарь с данными для проверки полей (
+            street_name, city, region, country, postcode
+            )
+        """
         field_mapping: dict[str, Input] = {
             "street_name": self.form.street_input,
             "city": self.form.city_input,
@@ -101,6 +122,14 @@ class CheckoutPageToolshop(BasePage):
         self.billing_address_proceed_to_checkout.click()
 
     def choose_payment_method(self, payment_method: str) -> None:
+        """
+        Выбрать способ оплаты из выпадающего списка.
+        Args:
+            payment_method: Ключ способа оплаты (
+            bank_transfer, cash_on_delivery, credit_card,
+            buy_now_pay_later, gift_card
+            )
+        """
         option_mapping: dict[str, str] = {
             "bank_transfer": "Bank Transfer",
             "cash_on_delivery": "Cash on Delivery",
@@ -115,6 +144,12 @@ class CheckoutPageToolshop(BasePage):
                 break
 
     def fill_credit_card(self, data: dict, exlude_field=None) -> None:
+        """
+        Заполнить данные кредитной карты с возможностью исключения одного поля.
+        Args:
+            data: Словарь с данными кредитной карты (cart_number, expiration_date, cvv)
+            exlude_field: Опциональное поле для исключения из заполнения
+        """
         credit_card_mapping: dict[str, Input] = {
             "cart_number": self.credit_card_number,
             "expiration_date": self.expiration_date,
@@ -131,10 +166,21 @@ class CheckoutPageToolshop(BasePage):
                 locator.fill(value=value)
 
     def fill_card_holder_name(self, holder_name: str) -> None:
+        """
+        Заполнить поле с именем владельца карты.
+        Args:
+            holder_name: Имя владельца кредитной карты
+        """
         self.card_holder_name.fill(value=holder_name)
 
     def click_confirm_button(self) -> None:
+        """Нажать кнопку подтверждения заказа."""
         self.button_confirm.click()
 
     def check_payment_success_message(self, text: str) -> None:
+        """
+        Проверить сообщение об успешной оплате.
+        Args:
+            text: Ожидаемый текст сообщения об успешной оплате
+        """
         self.payment_success_message.should_to_have_text(text=text)
