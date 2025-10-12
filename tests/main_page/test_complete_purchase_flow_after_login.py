@@ -7,8 +7,18 @@ from pages.product_page_toolshop import ProductPageToolshop
 
 @pytest.mark.usefixtures("auth_user")
 class TestCompletePurchaseFlowAfterLogin:
+    """Тесты для проверки полного цикла покупки после авторизации пользователя."""
+
     @pytest.fixture
     def data_test(self, get_generated_file, full_name_translit) -> dict[str, str]:
+        """
+        Фикстура подготовки тестовых данных для покупки.
+        Args:
+            get_generated_file: Фикстура сгенерированных данных пользователя
+            full_name_translit: Фикстура транслитерированного имени пользователя
+        Returns:
+            dict: Словарь с тестовыми данными для выполнения покупки
+        """
         user_data = get_generated_file
         full_name = f"{user_data['first_name']} {user_data['last_name']}"
         holder_name = full_name_translit
@@ -33,6 +43,36 @@ class TestCompletePurchaseFlowAfterLogin:
         product_page_toolshop: ProductPageToolshop,
         checkout_page_toolshop: CheckoutPageToolshop,
     ) -> None:
+        """
+        Тест полного цикла покупки после авторизации пользователя.
+
+        Steps:
+        1. Перейти на главную страницу
+        2. Проверить отображение баннера
+        3. Выполнить поиск товара
+        4. Проверить результат поиска
+        5. Перейти на страницу товара
+        6. Проверить название товара
+        7. Добавить несколько единиц товара в корзину
+        8. Проверить отображение иконки корзины
+        9. Проверить количество товаров в корзине
+        10. Перейти в корзину
+        11. Проверить URL корзины
+        12. Начать оформление заказа
+        13. Проверить авторизацию и продолжить
+        14. Проверить данные плательщика
+        15. Выбрать способ оплаты
+        16. Заполнить данные кредитной карты
+        17. Заполнить имя владельца карты
+        18. Подтвердить заказ
+        19. Проверить сообщение об успешной оплате
+
+        Args:
+            data_test: Фикстура с тестовыми данными
+            main_page_toolshop: Фикстура главной страницы
+            product_page_toolshop: Фикстура страницы товара
+            checkout_page_toolshop: Фикстура страницы оформления заказа
+        """
         main_page_toolshop.navbar.click_home_link()
         main_page_toolshop.banner.check_banner()
         main_page_toolshop.search(search_value=data_test["search"])
