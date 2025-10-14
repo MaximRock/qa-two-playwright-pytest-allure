@@ -10,11 +10,33 @@ logger: logging.Logger = logging.getLogger(__name__)
 
 
 class Title(Component):
+    """Компонент заголовка для работы с текстовыми заголовками на веб-страницах."""
+
     @property
     def type_of(self) -> str:
+        """Возвращает тип компонента для использования в логировании
+        и сообщениях об ошибках.
+
+        Returns:
+            str: Тип компонента - 'title'
+        """
         return "title"
 
     def should_contain_text(self, text: str, **kwargs) -> None:
+        """Проверить, что заголовок содержит точный указанный текст.
+        Метод проверяет полное соответствие текста заголовка ожидаемому значению.
+        Используется для валидации заголовков страниц,
+        разделов и других текстовых элементов.
+        Args:
+            text: Ожидаемый точный текст заголовка
+            **kwargs: Дополнительные аргументы для локатора
+        Raises:
+            ElementNotFoundError: Если заголовок не содержит точный ожидаемый текст
+                или если произошла ошибка при проверке текста
+        Example:
+            >>> page_title.should_contain_text("Мой аккаунт")
+            >>> section_title.should_contain_text("Личная информация")
+        """
         try:
             with allure.step(
                 f"Check that {self.type_of} with name "
