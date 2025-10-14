@@ -4,6 +4,14 @@ class TestBaseExceptionError(Exception):
     default_message: str = "Test Error"
 
     def __init__(self, message: str | None = None, *args, **kwargs) -> None:
+        """
+        Инициализация базового исключения тестовой среды.
+        Args:
+            message: Кастомное сообщение об ошибке
+            (используется default_message если None)
+            *args: Дополнительные позиционные аргументы
+            **kwargs: Дополнительные именованные аргументы
+        """
         self.message: str = message or self.default_message
         super().__init__(self.message, *args, **kwargs)
 

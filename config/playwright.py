@@ -6,7 +6,18 @@ load_dotenv()
 
 
 class Playwright:
+    """Класс для управления настройками Playwright."""
+
     def __init__(self) -> None:
+        """
+        Инициализация настроек Playwright из переменных окружения.
+        Attributes:
+            PAGE_VIEWPORT_SIZE: Размер viewport страницы
+            BROWSER: Тип браузера для тестов
+            IS_HEADLESS: Режим headless браузера
+            SLOW_MO: Замедление выполнения операций (в миллисекундах)
+            LOCALE: Локаль браузера
+        """
         self.PAGE_VIEWPORT_SIZE: dict[str, int] = {
             "width": int(os.getenv("PAGE_VIEWPORT_WIDTH", 1920)),
             "height": int(os.getenv("PAGE_VIEWPORT_HEIGHT", 1080)),
