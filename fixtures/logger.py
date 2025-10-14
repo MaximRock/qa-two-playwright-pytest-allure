@@ -5,8 +5,22 @@ from config.path_manager import PathManager
 
 
 def setup_logging():
+    """
+    Настройка системы логирования для тестового фреймворка.
+
+    Конфигурирует систему логирования с выводом в файл и консоль.
+    Устанавливает формат сообщений, уровни логирования и обработчики.
+
+    Returns:
+        logging.Logger: Корневой логгер с примененными настройками
+
+    Features:
+        - Запись логов уровня ERROR и выше в файл
+        - Вывод логов уровня ERROR и выше в консоль
+        - Создание директории для логов при необходимости
+        - Уменьшение уровня шума от Playwright
+    """
     # Настройка формата логов
-    # log_format = "%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s" #noqa
     log_format = "%(asctime)s | [%(levelname)s] %(name)s: %(message)s"
     formatter = logging.Formatter(log_format)
 
