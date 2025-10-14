@@ -5,7 +5,14 @@ from page_factory.select import Select
 
 
 class RegistrationForm:
+    """Компонент формы регистрации для страницы создания нового аккаунта."""
+
     def __init__(self, page: Page) -> None:
+        """
+        Инициализация компонентов формы регистрации.
+        Args:
+            page: Экземпляр страницы Playwright для взаимодействия с браузером
+        """
         self.page: Page = page
         self.country_select: Select = Select(
             page,
@@ -119,6 +126,14 @@ class RegistrationForm:
         )
 
     def fill_all_fields_except(self, data: dict, exclude_field=None) -> None:
+        """Заполнить все поля формы регистрации, кроме указанного.
+        Args:
+            data: Словарь с данными для заполнения полей
+            exclude_field: Опциональное имя поля для исключения из заполнения
+        Note:
+            Для исключенного поля выполняется очистка (для input)
+            или выбор пустого значения (для select)
+        """
         field_mapping = {
             "first_name": (self.first_name_input, "fill"),
             "last_name": (self.last_name_input, "fill"),
@@ -148,8 +163,15 @@ class RegistrationForm:
                 elif method == "select":
                     locator.select_option(value)
 
-    def check_error_text(self, error_field):
-        error_mapping = {
+    def check_error_text(self, error_field) -> None:
+        """Проверить текст сообщения об ошибке для указанного поля.
+        Args:
+            error_field: Имя поля, для которого проверяется сообщение об ошибке
+        Raises:
+            ValueError: Если указанное поле не найдено в маппинге ошибок
+            ElementNotVisibleError: Если сообщение об ошибке не содержит ожидаемый текст
+        """
+        error_mapping: dict[str, tuple[Input, str]] = {
             "first_name": (self.first_name_empty_error, " First name is required "),
             "last_name": (self.last_name_empty_error, " Last name is required "),
             "date_of_birth": (

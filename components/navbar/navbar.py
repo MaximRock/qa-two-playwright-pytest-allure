@@ -5,7 +5,16 @@ from page_factory.link import Link
 
 
 class Navbar:
+    """Компонент навигационной панели (navbar) для взаимодействия
+    с основными разделами приложения."""
+
     def __init__(self, page: Page) -> None:
+        """
+        Инициализация компонентов навигационной панели.
+
+        Args:
+            page: Экземпляр страницы Playwright для взаимодействия с браузером
+        """
         self.page: Page = page
         self.sign_in_link: Link = Link(
             page,
@@ -39,6 +48,9 @@ class Navbar:
         )
 
     def visit_login_page(self) -> None:
+        """Перейти на страницу авторизации через навигационную панель.
+        Автоматически обрабатывает раскрытие мобильного меню при необходимости.
+        """
         if self.navbar_toggler:
             self.navbar_toggler.click()
             self.sign_in_link.wait_for_link(state="visible")
@@ -47,6 +59,9 @@ class Navbar:
             self.sign_in_link.click()
 
     def click_home_link(self) -> None:
+        """Перейти на главную страницу через навигационную панель.
+        Автоматически обрабатывает раскрытие мобильного меню при необходимости.
+        """
         if self.navbar_toggler:
             self.navbar_toggler.click()
             self.home_link.wait_for_link(state="visible")
@@ -55,6 +70,11 @@ class Navbar:
             self.home_link.click()
 
     def check_user_login(self, user_text) -> None:
+        """Проверить отображение имени пользователя
+        в навигационной панели после авторизации.
+        Args:
+            user_text: Ожидаемое имя пользователя для проверки
+        """
         if self.navbar_toggler:
             self.navbar_toggler.click()
             self.nav_menu.should_to_have_text(text=user_text)
@@ -62,10 +82,16 @@ class Navbar:
             self.nav_menu.should_to_have_text(text=user_text)
 
     def click_on_cart(self) -> None:
+        """Перейти в корзину через навигационную панель."""
         self.nav_cart.click()
 
     def check_icon_cart_visible(self) -> None:
+        """Проверить видимость иконки корзины в навигационной панели."""
         self.nav_cart.should_be_visible()
 
     def check_quantity_icon_cart(self, text_quantity: str) -> None:
+        """Проверить количество товаров в корзине, отображаемое на иконке.
+        Args:
+            text_quantity: Ожидаемое количество товаров в корзине
+        """
         self.cart_quantity.should_to_have_text(text=text_quantity)
