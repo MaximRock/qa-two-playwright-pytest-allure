@@ -1,5 +1,14 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3546","test_open_registration_page","tests","Sun Aug 17 20:35:12 MSK 2025","passed","Sun Aug 17 20:35:16 MSK 2025","TestOpenRegistrationPage","test_open_registration_page","",""
-"","2355","test_open_login_page","tests","Sun Aug 17 20:35:08 MSK 2025","passed","Sun Aug 17 20:35:10 MSK 2025","TestOpenLogin","test_open_login_page","",""
-"","9690","test_registration_user","tests","Sun Aug 17 20:35:17 MSK 2025","passed","Sun Aug 17 20:35:27 MSK 2025","TestRegistrationUser","test_registration_user","",""
-"","1826","test_open_base_page","tests","Sun Aug 17 20:35:05 MSK 2025","passed","Sun Aug 17 20:35:06 MSK 2025","TestOpenBasePage","test_open_base_page","",""
+"
+Тест успешной регистрации нового пользователя.
+
+Steps:
+1. Заполнить все обязательные поля формы регистрации
+2. Нажать кнопку регистрации
+3. Проверить, что произошел переход на страницу авторизации
+
+Args:
+    get_generated_file: Фикстура сгенерированных данных пользователя
+    login_page_toolshop: Фикстура страницы авторизации
+    registration_page_toolshop: Фикстура страницы регистрации
+","7261","test_registration_user","tests.registration_user","Thu Nov 20 17:04:23 MSK 2025","passed","Thu Nov 20 17:04:31 MSK 2025","TestRegistrationUser","test_registration_user","",""
