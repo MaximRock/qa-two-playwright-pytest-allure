@@ -23,7 +23,7 @@ wheels/
 .env
 
 # allure
-allure_result
+allure_results
 
 # python-version
 .python-version
